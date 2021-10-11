@@ -33,6 +33,12 @@ npm run lint
 quasar build
 ```
 
+### Publish the webapp to firebase
+
+```bash
+firebase deploy
+```
+
 ### Customize the configuration
 
 See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
