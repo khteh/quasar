@@ -6,7 +6,6 @@
   "author": "Kok How, Teh <funcoolgeek@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "QENV=DEV quasar dev",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
