@@ -1,6 +1,7 @@
 .env
 *.swp
 *.log
+*.tgj
 .firebase/*
 .DS_Store
 .thumbs.db
