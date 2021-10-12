@@ -1,6 +1,9 @@
 # khteh (khteh)
 
-khteh's app using Quasar Framework
+khteh's app using Quasar Framework which includes:
+
+- Read/Write to Google Firebase Cloud FireStore
+- Fibonacci calculator
 
 ## Install the firebase tools
 
@@ -39,6 +42,8 @@ quasar build
 firebase deploy
 ```
 
-### Customize the configuration
+### Publish the webapp to https://khteh.github.io GitHub Page
 
-See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
+```bash
+npm run deploy
+```
