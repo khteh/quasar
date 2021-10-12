@@ -1,0 +1,60 @@
+<template>
+  <q-page padding>
+    <q-input
+      rounded
+      outlined
+      bottom-slots
+      v-model="n"
+      label="n: "
+      :dense="dense"
+      placeholder="Please provide a valid number to calculate fibonacci(n): "
+    >
+      <template v-slot:after>
+        <q-btn
+          round
+          dense
+          flat
+          color="primary"
+          icon="calculate"
+          @click="fibonacci"
+        />
+      </template>
+    </q-input>
+    <q-input v-model="fibn" label="Fibonacci(n): " :dense="dense" readonly />
+  </q-page>
+</template>
+<script>
+import { defineComponent, ref } from "vue";
+export default defineComponent({
+  name: "FibonacciPage",
+  setup() {
+    return {
+      n: ref(""),
+      fibn: ref(""),
+      dense: ref(false),
+    };
+  },
+  methods: {
+    async fibonacci() {
+      if (this.n !== undefined && this.n.length > 0 && !isNaN(this.n)) {
+        if (this.n <= 1) this.fibn = 1;
+        else {
+          let n = +this.n;
+          // return fib(n-2) + fib(n-1)
+          let result = [0, 1];
+          for (let i = 2; i < n + 1; i++) {
+            result[i % 2] = result[(i - 2) % 2] + result[(i - 1) % 2];
+          }
+          this.fibn = result[n % 2];
+        }
+      } else
+        console.log(
+          "Please provide a valid integer as query string for fibonacci(n) calculation!"
+        );
+    },
+  },
+});
+</script>
+<style>
+/* This is where your CSS goes */
+</style>
