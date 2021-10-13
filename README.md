@@ -5,7 +5,13 @@ khteh's app using Quasar Framework which includes:
 - Read/Write to Google Firebase Cloud FireStore
 - Fibonacci calculator
 
-## Install the firebase tools
+## Install the Quasar CLI
+
+```bash
+npm install -g @quasar/cli
+```
+
+## Install the Firebase tools
 
 ```bash
 npm install -g firebase-tools
@@ -15,6 +21,12 @@ npm install -g firebase-tools
 
 ```bash
 npm install
+```
+
+## Install packages
+
+```bash
+quasar ext add @quasar/<package name>
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
@@ -47,3 +59,5 @@ firebase deploy
 ```bash
 npm run deploy
 ```
+
+- This will run `quasar build` and `push-dir` the content of dist/spa to https://khteh.github.io
