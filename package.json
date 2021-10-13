@@ -6,7 +6,7 @@
   "author": "Kok How, Teh <funcoolgeek@gmail.com>",
   "private": true,
   "scripts": {
-    "deploy": "push-dir --dir=dist/spa --remote=khteh-page --branch=master",
+    "deploy": "quasar build && push-dir --dir=dist/spa --remote=khteh-page --branch=master",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
