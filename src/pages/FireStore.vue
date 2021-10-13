@@ -59,7 +59,7 @@ export default defineComponent({
     },
     async seedData() {
       seedData.forEach(async (todo) => {
-        console.log("Processing ", todo.title, "...");
+        //console.log("Processing ", todo.title, "...");
         let querySnapshot = await getDocs(
           query(
             collection(getFirestore(), "todos"),
