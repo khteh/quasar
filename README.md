@@ -11,7 +11,7 @@ khteh's app using Quasar Framework which includes:
 npm install -g @quasar/cli
 ```
 
-## Install the Firebase tools
+## Install the Firebase CLI
 
 ```bash
 npm install -g firebase-tools
@@ -29,32 +29,32 @@ npm install
 quasar ext add @quasar/<package name>
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
 quasar dev
 firebase serve
 ```
 
-### Lint the files
+## Lint the files
 
 ```bash
 npm run lint
 ```
 
-### Build the app for production
+## Build the app for production
 
 ```bash
 quasar build
 ```
 
-### Publish the webapp to firebase
+## Publish the webapp to firebase
 
 ```bash
 firebase deploy
 ```
 
-### Publish the webapp to https://khteh.github.io GitHub Page
+## Publish the webapp to https://khteh.github.io GitHub Page
 
 ```bash
 npm run deploy
