@@ -53,7 +53,7 @@ export default defineComponent({
       querySnapshot.forEach((doc) => {
         let data = doc.data();
         this.todos.push(data.todo);
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
       });
       this.loading = false;
     },
@@ -71,8 +71,6 @@ export default defineComponent({
           console.log("Add missing todo: ", todo.title);
           await addDoc(collection(getFirestore(), "todos"), { todo });
           this.todos.push(todo);
-        } else {
-          console.log("Skip existing record: ", querySnapshot.docs[0].data());
         }
       });
     },
