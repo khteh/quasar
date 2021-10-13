@@ -48,8 +48,8 @@ export default defineComponent({
     async getData() {
       this.loading = true;
       this.todos = [];
-      const db = getFirestore();
-      const querySnapshot = await getDocs(collection(db, "todos"));
+      let db = getFirestore();
+      let querySnapshot = await getDocs(collection(db, "todos"));
       querySnapshot.forEach((doc) => {
         let data = doc.data();
         this.todos.push(data.todo);
@@ -58,18 +58,18 @@ export default defineComponent({
       this.loading = false;
     },
     async seedData() {
-      const db = getFirestore();
       seedData.forEach(async (todo) => {
         console.log("Processing ", todo.title, "...");
-        const q = query(
-          collection(db, "todos"),
-          where("title", "==", todo.title)
+        let querySnapshot = await getDocs(
+          query(
+            collection(getFirestore(), "todos"),
+            where("todo.title", "==", todo.title)
+          )
         );
-        const querySnapshot = await getDocs(q);
         if (querySnapshot.empty) {
           // Contents of first document
           console.log("Add missing todo: ", todo.title);
-          await addDoc(collection(db, "todos"), { todo });
+          await addDoc(collection(getFirestore(), "todos"), { todo });
           this.todos.push(todo);
         } else {
           console.log("Skip existing record: ", querySnapshot.docs[0].data());

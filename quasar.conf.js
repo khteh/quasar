@@ -66,6 +66,10 @@ module.exports = configure(function (ctx) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
       },
+      // https://quasar.dev/start/vs-code-configuration
+      // Quasar uses cheap-module-eval-source-map by default.
+      // this is a configuration passed on to the underlying Webpack
+      devtool: 'source-map'      
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
