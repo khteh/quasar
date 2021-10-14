@@ -34,8 +34,8 @@ export default defineComponent({
   name: "FibonacciPage",
   setup() {
     return {
-      n: ref(""),
-      fibn: ref(""),
+      n: ref(0),
+      fibn: ref(0),
       dense: ref(false),
     };
   },
