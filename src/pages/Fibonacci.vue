@@ -25,7 +25,14 @@
         />
       </template>
     </q-input>
-    <q-input v-model="fibn" label="Fibonacci(n): " :dense="dense" readonly />
+    <q-input
+      filled
+      v-model="fibn"
+      label="Fibonacci(n): "
+      :dense="dense"
+      readonly
+      disable
+    />
   </q-page>
 </template>
 <script>

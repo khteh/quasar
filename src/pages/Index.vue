@@ -1,22 +1,39 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    />
-    <q-input v-model="greetings" :dense="dense" readonly />
+  <q-page padding>
+    <div class="q-pa-md">
+      <div class="row">
+        <img
+          alt="Quasar logo"
+          src="~assets/quasar-logo-vertical.svg"
+          style="width: 200px; height: 200px"
+        />
+      </div>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-6">
+          <q-input filled v-model="greetings" :dense="dense" readonly disable />
+        </div>
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "PageIndex",
   setup() {
-    const Greetings = async () => {
-      greetings.value = "Hello";
+    return {
+      greetings: ref(""),
+      dense: ref(false),
+    };
+  },
+  mounted() {
+    this.Greetings(); // 1
+  },
+  methods: {
+    async Greetings() {
+      this.greetings = "Hello";
       let now = new Date();
       let time = now.toLocaleString("en-SG", {
         timeZone: "Asia/Singapore",
@@ -27,13 +44,8 @@ export default defineComponent({
         minute: "2-digit",
         second: "2-digit",
       });
-      greetings.value += "! It's " + time + " now.";
-    };
-    return {
-      greetings: ref(""),
-      dense: ref(false),
-    };
+      this.greetings += "! It's " + time + " now.";
+    },
   },
-  methods: {},
 });
 </script>
