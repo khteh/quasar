@@ -8,6 +8,11 @@
       label="n: "
       :dense="dense"
       placeholder="Please provide a valid number to calculate fibonacci(n): "
+      :rules="[
+        (value) =>
+          (value !== undefined && value.length > 0 && !isNaN(value)) ||
+          'Please provide a valid number to calculate fibonacci(n)',
+      ]"
     >
       <template v-slot:after>
         <q-btn
