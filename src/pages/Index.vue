@@ -9,7 +9,7 @@
     </div>
     <div class="row" style="margin-top: 10px">
       <div class="col-6">
-        <q-input filled v-model="greetings" :dense="dense" readonly disable />
+        <q-input borderless v-model="greetings" :dense="dense" readonly />
       </div>
     </div>
   </q-page>

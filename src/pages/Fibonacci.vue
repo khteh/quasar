@@ -42,7 +42,7 @@ export default defineComponent({
   setup() {
     return {
       n: ref(0),
-      fibn: ref(0),
+      fibn: ref(1),
       dense: ref(false),
     };
   },
