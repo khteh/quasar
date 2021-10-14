@@ -76,7 +76,7 @@ export default defineComponent({
           await addDoc(collection(getFirestore(), "todos"), { todo });
           this.todos.push(todo);
         } else {
-          this.showNotif(
+          await this.showNotif(
             "Cannot add existing todo item: " + todo.title,
             "warning"
           );
@@ -84,7 +84,7 @@ export default defineComponent({
       });
     },
     async showNotif(msg, level) {
-      this.$q.notify({
+      await this.$q.notify({
         message: msg,
         type: level,
         actions: [
