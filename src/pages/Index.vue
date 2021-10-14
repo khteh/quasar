@@ -1,17 +1,15 @@
 <template>
   <q-page padding>
-    <div class="q-pa-md">
-      <div class="row">
-        <img
-          alt="Quasar logo"
-          src="~assets/quasar-logo-vertical.svg"
-          style="width: 200px; height: 200px"
-        />
-      </div>
-      <div class="row" style="margin-top: 10px">
-        <div class="col-6">
-          <q-input filled v-model="greetings" :dense="dense" readonly disable />
-        </div>
+    <div class="row">
+      <img
+        alt="Quasar logo"
+        src="~assets/quasar-logo-vertical.svg"
+        style="width: 200px; height: 200px"
+      />
+    </div>
+    <div class="row" style="margin-top: 10px">
+      <div class="col-6">
+        <q-input filled v-model="greetings" :dense="dense" readonly disable />
       </div>
     </div>
   </q-page>
