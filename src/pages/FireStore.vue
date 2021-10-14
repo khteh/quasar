@@ -23,6 +23,7 @@
 
 <script>
 import seedData from "../../data/todos.json";
+import { useQuasar } from "quasar";
 import { defineComponent } from "vue";
 import {
   getFirestore,
@@ -35,6 +36,9 @@ import {
 
 export default defineComponent({
   name: "FireStorePage",
+  setup() {
+    const $q = useQuasar();
+  },
   data() {
     return {
       loading: true,
@@ -71,7 +75,27 @@ export default defineComponent({
           console.log("Add missing todo: ", todo.title);
           await addDoc(collection(getFirestore(), "todos"), { todo });
           this.todos.push(todo);
+        } else {
+          this.showNotif(
+            "Cannot add existing todo item: " + todo.title,
+            "warning"
+          );
         }
+      });
+    },
+    async showNotif(msg, level) {
+      this.$q.notify({
+        message: msg,
+        type: level,
+        actions: [
+          {
+            icon: "close",
+            // for individual action (button):
+            attrs: {
+              "aria-label": "Dismiss",
+            },
+          },
+        ],
       });
     },
   },

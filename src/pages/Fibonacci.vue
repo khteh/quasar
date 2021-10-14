@@ -26,12 +26,11 @@
       </template>
     </q-input>
     <q-input
-      filled
+      borderless
       v-model="fibn"
       label="Fibonacci(n): "
       :dense="dense"
       readonly
-      disable
     />
   </q-page>
 </template>
