@@ -17,13 +17,22 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-
+import { date } from "quasar";
 export default defineComponent({
   name: "PageIndex",
-  setup() {
+  data() {
     return {
       greetings: ref(""),
       dense: ref(false),
+      afternoon: date.buildDate({
+        hours: 12,
+      }),
+      evening: date.buildDate({
+        hours: 18,
+      }),
+      midnight: date.buildDate({
+        hours: 0,
+      }),
     };
   },
   mounted() {
@@ -31,18 +40,24 @@ export default defineComponent({
   },
   methods: {
     async Greetings() {
-      this.greetings = "Hello";
-      let now = new Date();
-      let time = now.toLocaleString("en-SG", {
-        timeZone: "Asia/Singapore",
-        day: "numeric",
-        month: "numeric",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
-      this.greetings += "! It's " + time + " now.";
+      let timeStamp = Date.now();
+      const formattedTimeStamp = date.formatDate(
+        timeStamp,
+        "Do MMMM YYYY HH:mm:ss"
+      );
+      let suffix = "";
+      this.greetings = "";
+      if (timeStamp > this.midnight && timeStamp < this.afternoon) {
+        this.greetings += "Good morning! ";
+        suffix = "Have a great day!";
+      } else if (timeStamp > this.afternoon && timeStamp < this.evening) {
+        this.greetings += "Good afternoon! ";
+        suffix = "Have a great day!";
+      } else if (timeStamp > this.evening) {
+        this.greetings += "Good evening! ";
+        suffix = "Have a great evening!";
+      }
+      this.greetings += "It's " + formattedTimeStamp + " now. " + suffix;
     },
   },
 });
