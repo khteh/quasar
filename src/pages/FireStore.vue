@@ -43,6 +43,7 @@ export default defineComponent({
     return {
       loading: true,
       todos: [],
+      todoTitles: new Set(),
     };
   },
   created() {
@@ -54,16 +55,19 @@ export default defineComponent({
       this.todos = [];
       let db = getFirestore();
       let querySnapshot = await getDocs(collection(db, "todos"));
+      this.todoTitles.clear();
       querySnapshot.forEach((doc) => {
         let data = doc.data();
         this.todos.push(data.todo);
-        //console.log(doc.id, " => ", doc.data());
+        this.todoTitles.add(data.todo.title);
       });
       this.loading = false;
     },
     async seedData() {
       seedData.forEach(async (todo) => {
         //console.log("Processing ", todo.title, "...");
+        /*
+        This will incur costs - both execution and Cloud charges
         let querySnapshot = await getDocs(
           query(
             collection(getFirestore(), "todos"),
@@ -71,10 +75,13 @@ export default defineComponent({
           )
         );
         if (querySnapshot.empty) {
+        */
+        if (!this.todoTitles.has(todo.title)) {
           // Contents of first document
           console.log("Add missing todo: ", todo.title);
           await addDoc(collection(getFirestore(), "todos"), { todo });
           this.todos.push(todo);
+          this.todoTitles.add(todo.title);
         } else {
           await this.showNotif(
             "Cannot add existing todo item: " + todo.title,

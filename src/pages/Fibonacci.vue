@@ -38,7 +38,7 @@
 import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "FibonacciPage",
-  setup() {
+  data() {
     return {
       n: ref(0),
       fibn: ref(1),
