@@ -31,6 +31,9 @@ quasar ext add @quasar/<package name>
 
 ## Start the app in development mode (hot-code reloading, error reporting, etc.)
 
+- Generate self-signed cert for serving HTTP/2 over HTTPS.
+- Configure the cert path in `quasar.conf.js` `devServer.https` section.
+
 ```bash
 quasar dev
 firebase serve
