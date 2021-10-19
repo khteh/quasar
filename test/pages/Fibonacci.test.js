@@ -1,12 +1,14 @@
-import { mountFactory, qLayoutInjections } from '@quasar/quasar-app-extension-testing-unit-jest';
+import { mountFactory } from '@quasar/quasar-app-extension-testing-unit-jest';
 import { QInput } from 'quasar'; // <= cherry pick only the components you actually use
 import Fibonacci from '../../src/pages/Fibonacci'; // <= note the absence of `.vue` extension, here we are importing the JS/TS part of a Double File Component
+
 const factory = mountFactory(Fibonacci, {
-  components: {QInput},
+  // mount: { type: 'full' } <= uncomment this line to use `mount`; `shallowMount` is used by default as it will stub all **registered** components found into the template
+  quasar: { components: { QInput } },  
   mount: {
-    provide: qLayoutInjections(),
+    //type: 'full', <= uncomment this line to use `mount`; `shallowMount` is used by default as it will stub all **registered** components found into the template
   },
-});    
+});
 
 describe('Fibonacci', () => {
   test('Fibonacci with errors', () => {
