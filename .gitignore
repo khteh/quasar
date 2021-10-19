@@ -2,6 +2,8 @@
 *.swp
 *.log
 *.tgj
+*.crt
+*.key
 .firebase/*
 .DS_Store
 .thumbs.db
