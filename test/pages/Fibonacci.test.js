@@ -1,24 +1,41 @@
-import { mountFactory } from '@quasar/quasar-app-extension-testing-unit-jest';
-import { QInput } from 'quasar'; // <= cherry pick only the components you actually use
-import Fibonacci from '../../src/pages/Fibonacci'; // <= note the absence of `.vue` extension, here we are importing the JS/TS part of a Double File Component
+import { qLayoutInjections, installQuasarPlugin } from '@quasar/quasar-app-extension-testing-unit-jest';
+import { mount } from '@vue/test-utils';
+import { QBtn, } from 'quasar'; // <= cherry pick only the components you actually use
+import FibonacciPage from '../../src/pages/Fibonacci'; // <= note the absence of `.vue` extension, here we are importing the JS/TS part of a Double File Component
+installQuasarPlugin();
+describe('FibonacciPage', () => {
+  test('Fibonacci with errors', async () => {
+    const wrapper = mount(FibonacciPage, {
+      global: { provide: qLayoutInjections() },
+    });
+    const { vm } = wrapper;
 
-const factory = mountFactory(Fibonacci, {
-  // mount: { type: 'full' } <= uncomment this line to use `mount`; `shallowMount` is used by default as it will stub all **registered** components found into the template
-  quasar: { components: { QInput } },  
-  mount: {
-    //type: 'full', <= uncomment this line to use `mount`; `shallowMount` is used by default as it will stub all **registered** components found into the template
-  },
-});
+    const input = await wrapper.find("#fibInput");
+    expect(input.exists()).toBe(true)
+    input.setValue("Hello");
 
-describe('Fibonacci', () => {
-  test('Fibonacci with errors', () => {
-    //const wrapper = factory(); // <= when no props are needed
-    const wrapper = factory({ "n": "abc" }); // <= when props are needed    
-    expect(wrapper).toBeFalsy();
+    const button = wrapper.findComponent(QBtn);
+    await button.trigger('click');
+
+    const result = await wrapper.find("#fibResult");
+    expect(result.exists()).toBe(true)    
+    expect(result.element.value).toBe('1');
   });
-  test('Fibonacci with success', () => {
-    //const wrapper = factory(); // <= when no props are needed
-    const wrapper = factory({ "n": "20" }); // <= when props are needed    
-    expect(wrapper).toBeTruthy();
+  test('Fibonacci with success', async () => {
+    const wrapper = mount(FibonacciPage, {
+      global: { provide: qLayoutInjections() },
+    });
+    const { vm } = wrapper;
+
+    const input = await wrapper.find("#fibInput");
+    expect(input.exists()).toBe(true)
+    input.setValue("20");
+
+    const button = wrapper.findComponent(QBtn);
+    await button.trigger('click');
+
+    const result = await wrapper.find("#fibResult");
+    expect(result.exists()).toBe(true)    
+    expect(result.element.value).toBe('6765');
   });
 });

@@ -1,6 +1,7 @@
 <template>
   <q-page padding>
     <q-input
+      for="fibInput"
       rounded
       outlined
       bottom-slots
@@ -26,6 +27,7 @@
       </template>
     </q-input>
     <q-input
+      for="fibResult"
       borderless
       v-model="fibn"
       label="Fibonacci(n): "
