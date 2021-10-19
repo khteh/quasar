@@ -64,3 +64,12 @@ npm run deploy
 ```
 
 - This will run `quasar build` and `push-dir` the content of dist/spa to https://khteh.github.io
+
+## Tests
+
+- Jest unit tests:
+  - Fibonacci page.
+
+```bash
+quasar test --unit jest
+```
