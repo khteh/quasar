@@ -16,13 +16,14 @@ jobs:
         id: branch
       - name: Remove existing Node.JS
         run: sudo apt remove -y nodejs
-      - name: Install specific version of Node.JS
+      - name: Download and install NVM
         shell: bash
         run: |
           echo $NVM_DIR
-          curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh > install_node.sh
-          chmod +x install_node.sh
-          ./install_node.sh
+          curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+      - name: Install specific version of Node.JS
+        shell: bash
+        run: |
           . ~/.bashrc
           nvm install 10.23.0
       - name: Install CLIs
