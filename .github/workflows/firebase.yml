@@ -23,7 +23,10 @@ jobs:
           curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
       - name: Update environment
         shell: bash
-        run: . ~/.bashrc          
+        run: . ~/.bashrc
+      - name: Check nvm command successfully installed
+        shell: bash
+        run: nvm --version
       - name: Install specific version of Node.JS
         shell: bash
         run: nvm install 10.23.0
