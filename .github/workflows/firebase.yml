@@ -19,7 +19,8 @@ jobs:
       - name: Install specific version of Node.JS
         shell: bash
         run: |
-          mkdir ~/.nvm
+          unset $NVM_DIR
+          rm -rf $NVM_DIR
           curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
           . ~/.bashrc
           nvm install 10.23.0
