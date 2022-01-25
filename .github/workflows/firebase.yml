@@ -20,9 +20,8 @@ jobs:
         shell: bash
         run: |
           echo $NVM_DIR
-          unset $NVM_DIR
-          rm -rf $NVM_DIR
-          curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+          curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh -o install_node.sh
+          ./install_node.sh
           . ~/.bashrc
           nvm install 10.23.0
       - name: Install CLIs
