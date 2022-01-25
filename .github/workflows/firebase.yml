@@ -21,11 +21,12 @@ jobs:
         run: |
           echo $NVM_DIR
           curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+      - name: Update environment
+        shell: bash
+        run: . ~/.bashrc          
       - name: Install specific version of Node.JS
         shell: bash
-        run: |
-          . ~/.bashrc
-          nvm install 10.23.0
+        run: nvm install 10.23.0
       - name: Install CLIs
         run: |
           sudo npm install -g firebase-tools
