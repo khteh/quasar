@@ -23,7 +23,9 @@ jobs:
           curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
       - name: Update environment
         shell: bash
-        run: . ~/.bashrc
+        run: |
+          . ~/.bashrc
+          nvm --version
       - name: Check nvm command successfully installed
         shell: bash
         run: nvm --version
