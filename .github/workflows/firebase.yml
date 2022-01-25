@@ -24,7 +24,7 @@ jobs:
       - name: Update environment
         shell: bash
         run: |
-          . ~/.bashrc
+          source ~/.bashrc
           nvm --version
       - name: Check nvm command successfully installed
         shell: bash
