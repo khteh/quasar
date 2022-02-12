@@ -21,8 +21,8 @@ jobs:
           sudo npm install -g @quasar/cli
       - name: Build
         run: npm install
-      - name: Deploy
-        run: npm run deploy
+#      - name: Deploy
+#        run: npm run deploy
 #      - name: Firebase Deploy
 #        if: steps.branch.outputs.branch == 'master'
 #        run: firebase deploy -P production --token ${{ secrets.FIREBASE_TOKEN }} --only hosting
