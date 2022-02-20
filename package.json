@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "deploy": "quasar build && push-dir --dir=dist/spa --remote=khteh-page --branch=master",
-    "lint": "eslint --ext .js,.vue ./",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ./",
     "test": "echo \"See package.json => scripts for available tests.\" && exit 0",
     "test:unit": "jest --updateSnapshot",
     "test:unit:ci": "jest --ci",
