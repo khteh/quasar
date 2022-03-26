@@ -1,7 +1,7 @@
 import { qLayoutInjections, installQuasarPlugin } from '@quasar/quasar-app-extension-testing-unit-jest';
 import { mount } from '@vue/test-utils';
 import { QBtn, } from 'quasar'; // <= cherry pick only the components you actually use
-import FibonacciPage from '../../src/pages/Fibonacci'; // <= note the absence of `.vue` extension, here we are importing the JS/TS part of a Double File Component
+import FibonacciPage from '../../../../src/pages/Fibonacci'; // <= note the absence of `.vue` extension, here we are importing the JS/TS part of a Double File Component
 installQuasarPlugin();
 describe('FibonacciPage', () => {
   it('Fibonacci with errors', async () => {
