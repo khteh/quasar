@@ -4,7 +4,7 @@ import { QBtn, } from 'quasar'; // <= cherry pick only the components you actual
 import FibonacciPage from '../../src/pages/Fibonacci'; // <= note the absence of `.vue` extension, here we are importing the JS/TS part of a Double File Component
 installQuasarPlugin();
 describe('FibonacciPage', () => {
-  test('Fibonacci with errors', async () => {
+  it('Fibonacci with errors', async () => {
     const wrapper = mount(FibonacciPage, {
       global: { provide: qLayoutInjections() },
     });
@@ -21,7 +21,7 @@ describe('FibonacciPage', () => {
     expect(result.exists()).toBe(true)    
     expect(result.element.value).toBe('1');
   });
-  test('Fibonacci with success', async () => {
+  it('Fibonacci with success', async () => {
     const wrapper = mount(FibonacciPage, {
       global: { provide: qLayoutInjections() },
     });
