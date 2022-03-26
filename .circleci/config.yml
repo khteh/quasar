@@ -1,0 +1,69 @@
+version: 2.1 # use CircleCI 2.0
+jobs: # a collection of steps
+  build_and_test: # runs not using Workflows must have a `build` job as entry point
+    working_directory: ~/workspace # directory where steps will run
+    docker: # run the steps with Docker
+      - image: node:latest # ...with this image as the primary container; this is where all `steps` will run
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false # Only available in paid plan
+      - run: mkdir test_reports
+      # Download and cache dependencies
+      - restore_cache:
+          key: v1-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: v1-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Fix working directory permissions
+          command: chmod -R ugo+rwx .
+      - run: # run tests
+          name: Tests
+          command: npm run test:unit:coverage
+          when: always
+  deploy-eks:
+    working_directory: /tmp
+    docker:
+      - image: khteh/circleci-openjdk:latest
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - setup_remote_docker:
+          docker_layer_caching: false # Only available in paid plan
+      - run:
+          name: Use the saved build number here
+          command: |
+            echo 'export CIRCLE_BUILD_NUM_DOCKER="$(cat /tmp/docker-build_number.txt)"' >> $BASH_ENV
+            . $BASH_ENV
+            echo CIRCLE_BUILD_NUM_DOCKER: $CIRCLE_BUILD_NUM_DOCKER
+      - run:
+          name: Set Default AWS Region
+          command: aws configure set default.region $AWS_REGION
+      - run:
+          name: Set AWS Access Key
+          command: aws configure set aws_access_key_id $AWS_ACCESS_KEY
+      - run:
+          name: Set AWS Secret Key
+          command: aws configure set aws_secret_access_key $AWS_SECRET_KEY
+      - run:
+          name: Update Kubectl Configuration with cluster name
+          command: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
+      - run:
+          name: Update Node.JS RestAPI application
+          command: |
+            kubectl patch statefulset nodejsrestapi --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value":"'$AWS_ACCOUNT_ID'.dkr.ecr.ap-southeast-1.amazonaws.com/nodejsrestapi:'$CIRCLE_BUILD_NUM_DOCKER'"}]'
+workflows:
+  main:
+    jobs:
+      - build_and_test
+#      - deploy-eks:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master

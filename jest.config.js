@@ -1,4 +1,4 @@
-const esModules = ['quasar/lang', 'lodash-es'].join('|');
+const esModules = ['quasar', 'quasar/lang', 'lodash-es'].join('|');
 
 module.exports = {
   globals: {
@@ -9,6 +9,8 @@ module.exports = {
       pug: { doctype: 'html' },
     },
   },
+  // Jest assumes we are testing in node environment, specify jsdom environment instead
+  testEnvironment: 'jsdom',
   // noStackTrace: true,
   // bail: true,
   // cache: false,
@@ -33,11 +35,11 @@ module.exports = {
   },
   testMatch: [
     '<rootDir>/test/jest/__tests__/**/*.(spec|test).js',
-    '<rootDir>/test/pages/*.(spec|test).js',
     '<rootDir>/src/**/*.jest.(spec|test).js',
   ],
   moduleFileExtensions: ['vue', 'js', 'jsx', 'json'],
   moduleNameMapper: {
+    '^quasar$': 'quasar/dist/quasar.esm.prod.js',
     '^~/(.*)$': '<rootDir>/$1',
     '^src/(.*)$': '<rootDir>/src/$1',
     '^app/(.*)$': '<rootDir>/$1',
