@@ -36,9 +36,6 @@ import {
 
 export default defineComponent({
   name: "FireStorePage",
-  setup() {
-    const $q = useQuasar();
-  },
   data() {
     return {
       loading: true,
