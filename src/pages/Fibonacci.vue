@@ -1,6 +1,7 @@
 <template>
   <q-page padding>
     <q-input
+      data-test="inputFibonacci"
       for="fibInput"
       rounded
       outlined
@@ -17,16 +18,19 @@
     >
       <template v-slot:after>
         <q-btn
+          data-test="btnFibonacci"
           round
           dense
           flat
           color="primary"
           icon="calculate"
           @click="fibonacci"
+          :disable="submitButtonDisable"
         />
       </template>
     </q-input>
     <q-input
+      data-test="inputResult"
       for="fibResult"
       borderless
       v-model="fibn"
@@ -46,6 +50,13 @@ export default defineComponent({
       fibn: ref(1),
       dense: ref(false),
     };
+  },
+  computed: {
+    submitButtonDisable: {
+      get() {
+        return this.n === undefined || !this.n.length || isNaN(this.n);
+      },
+    },
   },
   methods: {
     async fibonacci() {
