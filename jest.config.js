@@ -16,7 +16,8 @@ module.exports = {
   // cache: false,
   // verbose: true,
   // watch: true,
-  collectCoverage: false,
+  collectCoverage: true,
+  coverageReporters: ["clover", "json", "lcov", "text", "text-summary"],
   coverageDirectory: '<rootDir>/test/jest/coverage',
   collectCoverageFrom: [
     '<rootDir>/src/**/*.vue',
