@@ -40,7 +40,7 @@ describe('FibonacciPage tests', () => {
     await button.trigger('click');
 
     const result = await wrapper.get("[data-test='inputResult']");
-    expect(result.exists()).toBeTruthy();  
+    expect(result.exists()).toBeTruthy();
     expect(result.element.value).toEqual('6765');
   });
 });
