@@ -23,16 +23,8 @@
 
 <script>
 import seedData from "../../data/todos.json";
-import { useQuasar } from "quasar";
 import { defineComponent } from "vue";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  addDoc,
-  query,
-  where,
-} from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 
 export default defineComponent({
   name: "FireStorePage",
@@ -62,7 +54,6 @@ export default defineComponent({
     },
     async seedData() {
       seedData.forEach(async (todo) => {
-        //console.log("Processing ", todo.title, "...");
         /*
         This will incur costs - both execution and Cloud charges
         let querySnapshot = await getDocs(
@@ -75,7 +66,6 @@ export default defineComponent({
         */
         if (!this.todoTitles.has(todo.title)) {
           // Contents of first document
-          console.log("Add missing todo: ", todo.title);
           await addDoc(collection(getFirestore(), "todos"), { todo });
           this.todos.push(todo);
           this.todoTitles.add(todo.title);
