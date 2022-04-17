@@ -6,7 +6,8 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/firestore', component: () => import('pages/FireStore.vue') },
-      { path: '/fibonacci', component: () => import('pages/Fibonacci.vue') }
+      { path: '/fibonacci', component: () => import('pages/Fibonacci.vue') },
+      { path: '/autogenerate', component: () => import('pages/AutoGenerate.vue') },
     ]
   },
 

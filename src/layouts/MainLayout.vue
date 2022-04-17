@@ -33,6 +33,9 @@
         <q-item clickable v-ripple to="/fibonacci">
           <q-item-label>Fibonacci</q-item-label>
         </q-item>
+        <q-item clickable v-ripple to="/autogenerate">
+          <q-item-label>Page Generated From JSON</q-item-label>
+        </q-item>
       </q-list>
     </q-drawer>
 
