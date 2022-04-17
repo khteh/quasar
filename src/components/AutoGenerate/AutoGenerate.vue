@@ -12,6 +12,7 @@
             :name="field.name"
             :fieldName="field.fieldName"
             :description="field.description"
+            data-test="toggle-setting"
           />
           <pop-up-edit-setting
             v-if="field.type === 'popUpEdit'"
@@ -19,6 +20,7 @@
             :name="field.name"
             :fieldName="field.fieldName"
             :hint="field.hint"
+            data-test="popup-edit-setting"
           />
           <drop-down-setting
             v-if="field.type === 'dropDown'"
@@ -26,6 +28,7 @@
             :description="field.description"
             :fieldName="field.fieldName"
             :internalOptions="internalOptions"
+            data-test="dropdown-setting"
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <auto-generate :optionsMap="optionsMap" />
+    <auto-generate :optionsMap="optionsMap" data-test="auto-generate" />
   </q-page>
 </template>
 <script>
