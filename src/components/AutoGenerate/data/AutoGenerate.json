@@ -21,7 +21,7 @@
             "name": "Auto Generated Edit box (Number)",
             "dataType": "number",
             "fieldName": "editBox",
-            "hint": "Popup Edit box hint",
+            "hint": "Popup Edit box (Number) hint",
             "errorMsg": "Warning: The value provided fails validationFunction!"
           },
         {
