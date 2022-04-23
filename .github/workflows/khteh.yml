@@ -17,6 +17,7 @@ jobs:
         id: branch
       - name: Install CLIs
         run: |
+          npm install -g npm@8.7.0
           sudo npm install -g firebase-tools
           sudo npm install -g @quasar/cli
       - name: Build
