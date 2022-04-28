@@ -7,7 +7,7 @@ jobs: # a collection of steps
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true # Only available in paid plan
+          docker_layer_caching: true
       - run: mkdir test_reports
       # Download and cache dependencies
       - restore_cache:
@@ -34,7 +34,7 @@ jobs: # a collection of steps
       - attach_workspace:
           at: /tmp
       - setup_remote_docker:
-          docker_layer_caching: true # Only available in paid plan
+          docker_layer_caching: true
       - run:
           name: Use the saved build number here
           command: |
