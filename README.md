@@ -4,6 +4,7 @@ khteh's app using Quasar Framework which includes:
 
 - Read/Write to Google Firebase Cloud FireStore
 - Fibonacci calculator
+- Autogeneration of UI Elements in a page from JSON data file.
 
 ## Install the Quasar CLI
 
