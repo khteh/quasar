@@ -80,5 +80,5 @@ quasar test --unit jest
 
 - `quasar dev`
 - `npx cypress open`
-  - Select E2E test
+  - Select E2E or Component test
   - Select the browser type
