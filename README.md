@@ -67,7 +67,7 @@ npm run deploy
 
 ## Tests
 
-# Jest unit tests:
+### Jest unit tests:
 
 - Fibonacci page.
 - AutoGenerate page.
@@ -76,7 +76,7 @@ npm run deploy
 quasar test --unit jest
 ```
 
-# Cypress E2E or Component tests:
+### Cypress E2E or Component tests:
 
 - `quasar dev`
 - `npx cypress open`
